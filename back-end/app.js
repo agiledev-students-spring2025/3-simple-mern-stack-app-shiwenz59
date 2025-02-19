@@ -57,6 +57,7 @@ app.get('/messages/:messageId', async (req, res) => {
     })
   }
 })
+
 // a route to handle logging out users
 app.post('/messages/save', async (req, res) => {
   // try to save the message to the database
@@ -74,6 +75,25 @@ app.post('/messages/save', async (req, res) => {
     return res.status(400).json({
       error: err,
       status: 'failed to save the message to the database',
+    })
+  }
+})
+
+// "About Us" Page
+app.get('/about', async (req, res) => {
+  try {
+    res.json({
+      name: "Shiwen Zhu",
+      bio: [
+        "This is Shiwen. I am a junior at NYU double majoring in Art History and Computer Science. "
+        + "I take pictures, go to museums, and download weird but interesting open-sourced projects on to my laptop. "
+      ]
+    })
+  } catch (err) {
+    console.error(err)
+    res.status(400).json({
+      error: err,
+      status: 'failed to retrieve about page content'
     })
   }
 })
